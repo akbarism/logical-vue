@@ -21,12 +21,22 @@
           <h4>2. menjumlahkan matrix</h4>
           <div>
             <div>
-              <input type="number" v-model="matrixA" />
-              <button @click="matA">Create Matrix A</button>
+              <h5>Input matrix A</h5>
+              <input
+                type="text"
+                v-model="matrixA"
+                maxlength="9"
+                @change="matA"
+              />
             </div>
             <div>
-              <input type="number" v-model="matrixB" />
-              <button @click="matB">Create Matrix B</button>
+              <h5>input matrix B</h5>
+              <input
+                type="text"
+                v-model="matrixB"
+                maxlength="9"
+                @change="matB"
+              />
             </div>
             <button @click="five">submit</button>
           </div>
@@ -126,8 +136,6 @@ export default {
     },
     five() {
       let aLength = this.matrixA.length;
-      console.log(this.matrixA);
-      console.log(this.matrixB);
       let b0Length = this.matrixB[0].length;
       let bLength = this.matrixB.length;
       if (this.matrixA[0].length !== bLength) {
@@ -140,9 +148,10 @@ export default {
           result[i][j] = this.matrixA[i][j] + this.matrixB[i][j];
         }
       }
-      return result;
+      this.hasilLima = result;
     },
-    matA() {
+    matA(e) {
+      e.preventDefault;
       if (this.matrixA.length > 1) {
         let arr = this.matrixA.split("").map(Number);
         let matrixA = [];
@@ -150,7 +159,6 @@ export default {
           matrixA.push(arr.splice(0, Math.ceil(arr.length / i)));
         }
         this.matrixA = matrixA;
-        // console.log(this.matrixA);
       }
     },
     matB() {
